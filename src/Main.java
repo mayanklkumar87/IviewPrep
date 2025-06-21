@@ -28,7 +28,8 @@ public class Main {
 
     public static void countElectionWinnerSolution2(List<String> votesList) {
         // Sample list
-
+        List<Integer> nums = Arrays.asList(1, 1, 1, 4, 2, 2, 5, 3, 3);
+        findDistinctSquares(nums);
 
         // Create a frequency map using streams
         Map<String, Integer> frequencyMap = new HashMap<>();
@@ -58,7 +59,11 @@ public class Main {
 
     //ToDo : input 3,3,3,2,2,2,5,4,4 -> 4,9,16,25
     //right java 8 code to find distinct int and square them and print
+public static void findDistinctSquares(List<Integer> nums ){
 
+    nums.stream().distinct().map(x->x*x).sorted()
+            .collect(Collectors.toList()).forEach(System.out::println);
+}
     //Check more questions on net to use groupby and other such operations using stream
     //learn to use map and flat map in stream
 
