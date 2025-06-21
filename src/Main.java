@@ -64,6 +64,41 @@ public static void findDistinctSquares(List<Integer> nums ){
     nums.stream().distinct().map(x->x*x).sorted()
             .collect(Collectors.toList()).forEach(System.out::println);
 }
+
+    public static void interviewTaskSortQuestion(){
+        Dotask letsDoTask = new Dotask(1,2,"morning chores");
+        Dotask mustDoTask = new Dotask(2,1,"morning yoga");
+        Dotask paidDoTask = new Dotask(3,3,"official tasks.");
+        System.out.println("Hello world!");
+
+        //List<Dotask> doTasks = Arrays.asList(letsDoTask,mustDoTask,paidDoTask);
+        List<Dotask> doTasks = new ArrayList<>(Arrays.asList(letsDoTask,mustDoTask,paidDoTask));
+        //doTasks.stream().sorted((x,y)->(x.getTaskPriority()-y.getTaskPriority())).forEach(System.out::println);
+        doTasks.stream().sorted(new Comparator<Dotask>() {
+        @Override
+        public int compare(Dotask o1, Dotask o2) {
+            return o1.getTaskPriority()- o2.getTaskPriority();
+        }}).forEach(System.out::println);
+
+        doTasks.stream().sorted((o1, o2) -> o1.getTaskPriority()- o2.getTaskPriority()).forEach(System.out::println);
+        doTasks.stream().sorted(Comparator.comparingInt(Dotask::getTaskPriority)).forEach(System.out::println);
+        doTasks.stream().sorted((x,y)->(x.getTaskDescription().compareToIgnoreCase(y.getTaskDescription()))).collect(Collectors.toList());
+
+        //doTasks.forEach(System.out::println);
+
+        /*doTasks.forEach(t->{
+            System.out.println("start :: "+t.getTaskDescription());
+        });*/
+
+        doTasks.sort(Comparator.comparingInt(Dotask::getTaskPriority));
+        Collections.sort(doTasks,Comparator.comparingInt(Dotask::getTaskPriority));
+        //doTasks.stream().sorted(Comparator.comparingInt(Dotask::getTaskPriority)).forEach(System.out::println);
+        /*List<Dotask> doTasksByPriority =
+                doTasks.stream().sorted(Comparator.comparingInt(Dotask::getTaskPriority))
+                .collect(Collectors.toList());
+        doTasksByPriority.forEach(System.out::println);*/
+    }
+
     //Check more questions on net to use groupby and other such operations using stream
     //learn to use map and flat map in stream
 
